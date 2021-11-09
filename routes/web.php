@@ -20,3 +20,11 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+
+Route::get('/tender', function () {
+    return view('tender.index');
+});
+Route::get('/tender/detail', function () {
+    return view('tender.detail');
+});
+Route::get('/admin',  [App\Http\Controllers\AdminController::class, 'index'])->name('admin');

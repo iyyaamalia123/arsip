@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Pengarsipan File</title>
 
     <!-- Scripts -->
     <link rel="icon" href="{{ asset('assets/img/brand/favicon.png') }}" type="image/png">
@@ -46,13 +46,19 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin') }}">
+                                <i class="fas fa-users text-danger"></i>
+                                <span class="nav-link-text">Admin</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="icons.html">
                                 <i class="ni ni-single-02 text-orange"></i>
                                 <span class="nav-link-text">Data Karyawan</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="map.html">
+                            <a class="nav-link" href="{{ url('/tender') }}">
                                 <i class="ni ni-collection text-primary"></i>
                                 <span class="nav-link-text">Tender</span>
                             </a>
