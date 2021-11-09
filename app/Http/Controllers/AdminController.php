@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -25,7 +26,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.create');
     }
 
     /**
@@ -36,7 +37,20 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return $request;
+        $admin              = New User();
+        $admin->name        = $request->name;
+        $admin->password    = Hash::make($request->password);
+        $admin->email       = $request->email;
+        $admin->level       = 'admin';
+        if ($admin->status == 'on' ) {
+            $admin->status  = true;
+        } else {
+            $admin->status  = false;
+        }
+        $admin->save();       
+
+        return redirect(route('admin'));
     }
 
     /**
@@ -56,9 +70,9 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+        return view('admin.edit');
     }
 
     /**

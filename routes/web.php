@@ -28,3 +28,6 @@ Route::get('/tender/detail', function () {
     return view('tender.detail');
 });
 Route::get('/admin',  [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
+Route::get('/admin/create',  [App\Http\Controllers\AdminController::class, 'create'])->name('admin.create');
+Route::post('/admin/store',  [App\Http\Controllers\AdminController::class, 'store'])->name('admin.store');
+Route::get('/admin/edit',  [App\Http\Controllers\AdminController::class, 'edit'])->name('admin.edit');
