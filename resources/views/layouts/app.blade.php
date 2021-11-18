@@ -21,6 +21,9 @@
     <!-- Page plugins -->
     <!-- Argon CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/argon.css?v=1.2.0') }}" type="text/css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.2/dist/sweetalert2.min.css">
+    @yield('css')
 </head>
 
 <body>
@@ -162,6 +165,31 @@
     <script src="{{ asset('assets/vendor/chart.js/dist/Chart.extension.js') }}"></script>
     <!-- Argon JS -->
     <script src="{{ asset('assets/js/argon.js?v=1.2.0') }}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.2/dist/sweetalert2.min.js"></script>
+
+    @yield('js')
+
+    <script>
+        $(function() {
+            @if (Session::has('success'))
+                Swal.fire({
+                icon: 'success',
+                title: 'Great!',
+                text: '{{ Session::get('success') }}'
+                })
+            @endif
+
+            @if (Session::has('error'))
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '{{ Session::get('error') }}'
+                })
+            @endif
+        });
+    </script>
+
 </body>
 
 </html>

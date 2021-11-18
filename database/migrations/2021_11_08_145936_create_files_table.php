@@ -21,6 +21,7 @@ class CreateFilesTable extends Migration
             $table->string('name_show');
             $table->string('url_file');
             $table->char('tahun', 4);
+            $table->char('file_type', 10);
             $table->timestamps();
         });
     }
