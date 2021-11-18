@@ -31,7 +31,7 @@
             <!-- Brand -->
             <div class="sidenav-header  align-items-center">
                 <a class="navbar-brand" href="javascript:void(0)">
-                    <img src="../assets/img/brand/blue.png" class="navbar-brand-img" alt="...">
+                    <img src="../assets/img/brand/mik.png" class="navbar-brand-img" alt="...">
                 </a>
             </div>
             <div class="navbar-inner">
@@ -52,7 +52,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="icons.html">
+                            <a class="nav-link" href="/karyawan">
                                 <i class="ni ni-single-02 text-orange"></i>
                                 <span class="nav-link-text">Data Karyawan</span>
                             </a>

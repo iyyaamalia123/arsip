@@ -28,3 +28,10 @@ Route::get('/tender/detail', function () {
     return view('tender.detail');
 });
 Route::get('/admin',  [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
+
+Route::get('/karyawan',  [App\Http\Controllers\KaryawanController::class, 'index'])->name('karyawan');
+
+Route::get('/karyawan/create',  [App\Http\Controllers\KaryawanController::class, 'create'])->name('karyawan.create');
+
+Route::get('/tender/create',  [App\Http\Controllers\KaryawanController::class, 'create'])->name('tender.create');
+

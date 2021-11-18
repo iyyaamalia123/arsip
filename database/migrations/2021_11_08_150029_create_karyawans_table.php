@@ -17,10 +17,12 @@ class CreateKaryawansTable extends Migration
             $table->id();
             $table->integer('id_admin');
             $table->string('nama');
-            $table->string('jabatan');
+            $table->string('nik');
             $table->string('alamat');
             $table->string('telp');
+            $table->string('telp_darurat');
             $table->set('jenis_kelamin', ['laki-laki', 'perempuan']);
+            $table->boolean('status', ['menikah','single']);
             $table->timestamps();
         });
     }
