@@ -12,12 +12,10 @@
                             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                                 <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
                                 {{-- <li class="breadcrumb-item"><a href="#">Tender</a></li> --}}
-                                <li class="breadcrumb-item active" aria-current="page">Admin</li>
+                                <li class="breadcrumb-item active" aria-current="page">Data Karyawan</li>
+                                <li class="breadcrumb-item active" aria-current="page">Create</li>
                             </ol>
                         </nav>
-                    </div>
-                    <div class="col-lg-6 col-5 text-right">
-                        <a href="/karyawan/create" class="btn btn-sm btn-neutral">New</a>
                     </div>
                 </div>
             </div>
@@ -29,66 +27,78 @@
             <div class=" col ">
                 <div class="card">
                     <div class="card-header bg-transparent">
-                        <h3 class="mb-0">Tambah Data Kryawan</h3>
+                        <h3 class="mb-0">Create Karyawan</h3>
                     </div>
-                    <form>
-                        <div class="form-group">
-                            <label for="example-text-input" class="form-control-label">&emsp; Nama</label>
-                            <input class="form-control" type="text" id="example-text-input">
-                        </div>
-                        <div class="form-group">
-                            <label for="example-search-input" class="form-control-label">&emsp; NIK</label>
-                            <input class="form-control" type="number" id="example-search-input">
-                        <div class="form-group">
-                            <label for="example-url-input" class="form-control-label">&emsp; Tempat, Tanggal Lahir</label>
-                            <input class="form-control" type="date"  id="example-url-input">
-                        </div>
-                        <div class="form-group">
-                            <label for="example-email-input" class="form-control-label">&emsp; Alamat</label>
-                            <input class="form-control" type="text,number" id="example-email-input">
-                        </div>
-                        <div class="form-group">
-                            <label for="example-password-input" class="form-control-label">&emsp; Agama</label>
-                            <input class="form-control" type="text" value="password" id="example-password-input">
-                        </div>
-                        <div class="form-group">
-                            <label for="example-datetime-local-input" class="form-control-label">&emsp; Nomor Telephone</label>
-                            <input class="form-control" type="number" id="example-datetime-local-input">
-                        </div>
-                        <div class="form-group">
-                            <label for="example-date-input" class="form-control-label">&emsp;Nomor Telephone Darurat</label>
-                            <input class="form-control" type="Number" id="example-date-input">
-                        </div>
-                        <div>
-                        <p for="example-password-input" class="form-control-label">&emsp; Status</p>
-                        <div class="custom-control custom-radio mb-3">
-                            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">&emsp;
-                            <label class="custom-control-label" for="customRadio1">Laki-laki</label>
-                          </div>
-                          <div class="custom-control custom-radio">
-                            <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">&emsp;
-                            <label class="custom-control-label" for="customRadio2">Perempuan</label>
-                          </div>
-                          <div>
-                            <div id="map-default" class="map-canvas" data-lat="40.748817" data-lng="-73.985428" style="height: 600px;"></div>
-                          <p for="example-password-input" class="form-control-label">&emsp; Gender</p>
-                          <div class="custom-control custom-radio mb-3">
-                            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">&emsp;
-                            <label class="custom-control-label" for="customRadio1">Laki-laki</label>
-                          </div>
-                          <div class="custom-control custom-radio">
-                            <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">&emsp;
-                            <label class="custom-control-label" for="customRadio2">Perempuan</label>
-                          </div>
-                        </div>
-                        
-                    </form>
+                    <div class="card-body">
+                        <form action="{{ route('karyawan.store') }}" method="POST">
+                            @csrf
+                            <div class="form-group">
+                                <label for="name" class="form-control-label">Nama Lengkap</label>
+                                <input class="form-control" type="text" value="{{ old('name') }}" name="name" id="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="form-control-label">NIK</label>
+                                <input class="form-control" type="number" name="nik" value="{{ old('nik') }}"
+                                    id="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="form-control-label">Tempat Lahir</label>
+                                <input class="form-control" type="text" value="{{ old('tempat lahir') }}"
+                                    name="tempat lahir" id="tempat lahir">
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="form-control-label">Tanggal Lahir</label>
+                                <input class="form-control" type="date" value="{{ old('date') }}"
+                                    name="date" id="date">
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="form-control-label">Alamat</label>
+                                <input class="form-control" type="text" value="{{ old('alamat') }}"
+                                    name="alamat" id="alamat">
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="form-control-label">Agama</label>
+                                <input class="form-control" type="text" value="{{ old('agama') }}"
+                                    name="agama" id="agama">
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="form-control-label">Nomor Telephone</label>
+                                <input class="form-control" type="number" value="{{ old('no telp') }}"
+                                    name="no telp" id="no telp">
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="form-control-label">Nomor Darurat</label>
+                                <input class="form-control" type="number" value="{{ old('no darurat') }}"
+                                    name="no darurat" id="no darurat">
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="form-control-label">Gender</label>
+                                <br>
+                                <div class="custom-control custom-radio mb-3">
+                                    <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                                    <label class="custom-control-label" for="customRadio1">Perempuan</label>
+                                  </div>
+                                  <div class="custom-control custom-radio">
+                                    <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                                    <label class="custom-control-label" for="customRadio2">Laki-laki</label>
+                                  </div>
+                            <br>
+                            <div class="form-group">
+                                <label for="password" class="form-control-label">Status</label>
+                                <br>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+                                    <label class="custom-control-label" for="customRadioInline1">Menikah</label>
+                                  </div>
+                                  <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+                                    <label class="custom-control-label" for="customRadioInline2">Single</label>
+                                  </div>
+                            </div>
                     <div class="card-body">
                         <div class="form">
-                            <button type="button" class="btn btn-outline-primary">Tambah</button>
-                            <div class="table-responsive">
-                                
-                            </div>
+                            <button type="submit" class="btn btn-outline-primary">Tambah</button>
+                            
                         </div>
                     </div>
                 </div>  

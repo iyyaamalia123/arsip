@@ -41,7 +41,7 @@
             <div class="row align-items-center justify-content-xl-between">
                 <div class="col-xl-6">
                     <div class="copyright text-center text-xl-left text-muted">
-                        &copy; 2021 <a href="{{ url('/') }}" class="font-weight-bold ml-1"
+                        &copy;<a href="{{ url('/') }}" class="font-weight-bold ml-1"
                             target="_blank">Pengarsipan PT MATARAM INTI KONTRUKSI</a>
                     </div>
                 </div>

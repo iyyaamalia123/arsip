@@ -67,15 +67,21 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="profile.html">
+                            <a class="nav-link" href="{{ url('/proyek') }}">
                                 <i class="ni ni-building text-yellow"></i>
                                 <span class="nav-link-text">Proyek</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="tables.html">
+                            <a class="nav-link" href="{{ url('/inventaris') }}">
                                 <i class="ni ni-bullet-list-67 text-success"></i>
                                 <span class="nav-link-text">Inventaris Perusahaan</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/keuangan') }}">
+                                <i class="ni ni-money-coins"></i>
+                                <span class="nav-link-text">Keuangan</span>
                             </a>
                         </li>
 

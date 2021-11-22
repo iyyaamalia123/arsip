@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('content')
     <!-- Header -->
     <div class="header bg-primary pb-6">
@@ -11,12 +12,10 @@
                             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                                 <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
                                 {{-- <li class="breadcrumb-item"><a href="#">Tender</a></li> --}}
-                                <li class="breadcrumb-item active" aria-current="page">Admin</li>
+                                <li class="breadcrumb-item active" aria-current="page">Data Karyawan</li>
+                                <li class="breadcrumb-item active" aria-current="page">Create</li>
                             </ol>
                         </nav>
-                    </div>
-                    <div class="col-lg-6 col-5 text-right">
-                        <a href="{{ route('admin.create') }}" class="btn btn-sm btn-neutral">New</a>
                     </div>
                 </div>
             </div>
@@ -28,10 +27,10 @@
             <div class=" col ">
                 <div class="card">
                     <div class="card-header bg-transparent">
-                        <h3 class="mb-0">Edit</h3>
+                        <h3 class="mb-0">Create Data Karyawan</h3>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('admin.store') }}" method="POST">
+                        <form action="{{ route('karyawan.store') }}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label for="name" class="form-control-label">Nama Lengkap</label>

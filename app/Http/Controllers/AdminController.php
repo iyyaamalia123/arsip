@@ -94,7 +94,7 @@ class AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        //
-    }
+     {
+         //
+     }
 }

@@ -29,7 +29,7 @@
             <div class=" col ">
                 <div class="card">
                     <div class="card-header bg-transparent">
-                        <h3 class="mb-0">Data Kryawan</h3>
+                        <h3 class="mb-0">Data Karyawan</h3>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -38,12 +38,14 @@
                                     <table class="table align-items-center">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th scope="col" class="sort" data-sort="name">Nama</th>
-                                                <th scope="col" class="sort" data-sort="budget">NIK</th>
-                                                <th scope="col" class="sort" data-sort="status">Alamat</th>
-                                                <th scope="col" class="sort" data-sort="status">No Telephone</th>
-                                                <th scope="col" class="sort" data-sort="status">No Telp Darurat</th>
-                                                <th scope="col" class="sort" data-sort="status">Jenis Kelamin</th>
+                                                <th scope="col" class="sort" data-sort="nama">Nama</th>
+                                                <th scope="col" class="sort" data-sort="nik">NIK</th>
+                                                <th scope="col" class="sort" data-sort="tempat_lahir">Tempat Lahir</th>
+                                                <th scope="col" class="sort" data-sort="tanggal_Lahir">Tanggal Lahir</th>
+                                                <th scope="col" class="sort" data-sort="alamat">Alamat</th>
+                                                <th scope="col" class="sort" data-sort="no_telp">Nomor Telephone</th>
+                                                <th scope="col" class="sort" data-sort="no_darurat">Nomor Darurat</th>
+                                                <th scope="col" class="sort" data-sort="gender">Gender</th>
                                                 <th scope="col" class="sort" data-sort="status">Status</th>
                                                 <th scope="col" class="sort"></th>
                                             </tr>
@@ -58,32 +60,25 @@
                                                         {{ $karyawan->NIK }}
                                                     </td>
                                                     <td>
-                                                        {{ $karyawan->Alamat }}
+                                                        {{ $karyawan->TempatLahir }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $karyawan->TanggalLahir }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $karyawan->Agama }}
                                                     </td>
                                                     <td>
                                                         {{ $karyawan->NoTelp }}
                                                     </td>
                                                     <td>
-                                                        {{ $karyawan->NoTelpDarurat }}
+                                                        {{ $karyawan->NoDarurat }}
                                                     </td>
                                                     <td>
-                                                        {{ $karyawan->JenisKelamin }}
+                                                        {{ $karyawan->Gender }}
                                                     </td>
                                                     <td>
                                                         {{ $karyawan->Status }}
-                                                    </td>
-                                                    <td>
-                                                        @if ($admin->status == true)
-                                                            <span class="badge badge-dot mr-4">
-                                                                <i class="bg-success"></i>
-                                                                <span class="status">Active</span>
-                                                            </span>
-                                                        @else
-                                                            <span class="badge badge-dot mr-4">
-                                                                <i class="bg-danger"></i>
-                                                                <span class="status">Not Active</span>
-                                                            </span>
-                                                        @endif
                                                     </td>
                                                     <td class="text-right">
                                                         <div class="dropdown">
