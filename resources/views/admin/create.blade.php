@@ -34,18 +34,23 @@
                             @csrf
                             <div class="form-group">
                                 <label for="name" class="form-control-label">Nama Lengkap</label>
-                                <input class="form-control" type="text" value="{{ old('name') }}" name="name" id="name">
+                                <input class="form-control" type="text" value="{{ old('name') }}" name="name" id="name"
+                                    required>
                             </div>
                             <div class="form-group">
                                 <label for="email" class="form-control-label">Email</label>
                                 <input class="form-control" type="email" name="email" value="{{ old('email') }}"
-                                    id="email">
+                                    required id="email">
                             </div>
                             <div class="form-group">
                                 <label for="password" class="form-control-label">Password</label>
-                                <input class="form-control" type="password" value="{{ old('password') }}"
+                                <input class="form-control" type="password" value="{{ old('password') }}" required
                                     name="password" id="password">
                             </div>
+                            <select class="form-control" name="level" required>
+                                <option value="admin">Admin</option>
+                                <option value="superadmin">Superadmin</option>
+                            </select>
                             <div class="form-group">
                                 <label for="status" class="form-control-label">Status</label>
                                 <br>

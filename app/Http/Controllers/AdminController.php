@@ -37,20 +37,19 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request;
         $admin              = New User();
         $admin->name        = $request->name;
         $admin->password    = Hash::make($request->password);
         $admin->email       = $request->email;
-        $admin->level       = 'admin';
-        if ($admin->status == 'on' ) {
+        $admin->level       = $request->level;
+        if ($request->status == 'on' ) {
             $admin->status  = true;
         } else {
             $admin->status  = false;
         }
         $admin->save();       
 
-        return redirect(route('admin'));
+        return redirect(route('admin'))->with('success', 'Berhasil Membuat Admin');;
     }
 
     /**
@@ -70,9 +69,10 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($id)
     {
-        return view('admin.edit');
+        $data = User::find($id);
+        return view('admin.edit', compact('data'));
     }
 
     /**
@@ -84,7 +84,21 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $admin              = User::find($id);
+        $admin->name        = $request->name;
+        $admin->email       = $request->email;
+        $admin->level       = $request->level;
+        if ($request->status == 'on' ) {
+            $admin->status  = true;
+        } else {
+            $admin->status  = false;
+        }
+        if ( $admin->update()) {
+            return redirect(route('admin'))->with('success', 'Berhasil Merubah Data Admin');;
+        }else{
+            return redirect(route('admin'))->with('error', 'Gagal Merubah Data Admin');;
+        }
+        
     }
 
     /**
@@ -95,6 +109,13 @@ class AdminController extends Controller
      */
     public function destroy($id)
      {
-         //
+         $data = User::find($id);
+         if ( $data->delete()) {
+            return redirect(route('admin'))->with('success', 'Berhasil Menghapus Data Admin');;
+         } else {
+            return redirect(route('admin'))->with('error', 'Gagal Menghapus Data Admin');;
+         }
+         
+        
      }
 }

@@ -79,8 +79,10 @@
                                                             </a>
                                                             <div
                                                                 class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                                <a class="dropdown-item" href="/admin/edit">Edit</a>
-                                                                <a class="dropdown-item" href="#">Delete</a>
+                                                                <a class="dropdown-item"
+                                                                    href="{{ url('admin/edit/' . $admin->id) }}">Edit</a>
+                                                                <a class="dropdown-item"
+                                                                    href="{{ url('admin/destroy/' . $admin->id) }}">Delete</a>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -99,27 +101,24 @@
     </div>
 @endsection
 @section('js')
-<script>
-  $('.delete_data').click(function() {
-    var id = $ (this) .data("id");
-    var token = $("meta[name='csrf-token']").attr("content");
+    <script>
+        $('.delete_data').click(function() {
+            var id = $(this).data("id");
+            var token = $("meta[name='csrf-token']").attr("content");
 
-    $.ajax(
-      {
-        url: "/admin/destroy/"+id,
-        type: 'DELETE',
-        data: {
-          "id" : id,
-          "_token": token,
-        },
-        success: function () {
-          alert("Sukses");
-          window.location.reload(); 
-        }
-      }
-    )
-  })
-</script>
-    
+            $.ajax({
+                url: "/admin/destroy/" + id,
+                type: 'DELETE',
+                data: {
+                    "id": id,
+                    "_token": token,
+                },
+                success: function() {
+                    alert("Sukses");
+                    window.location.reload();
+                }
+            })
+        })
+    </script>
+
 @endsection
-       

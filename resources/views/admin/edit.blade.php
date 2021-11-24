@@ -15,9 +15,6 @@
                             </ol>
                         </nav>
                     </div>
-                    <div class="col-lg-6 col-5 text-right">
-                        <a href="{{ route('admin.create') }}" class="btn btn-sm btn-neutral">New</a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -31,33 +28,36 @@
                         <h3 class="mb-0">Edit</h3>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('admin.store') }}" method="POST">
+                        <form action="{{ url('admin/update/' . $data->id) }}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label for="name" class="form-control-label">Nama Lengkap</label>
-                                <input class="form-control" type="text" value="{{ old('name') }}" name="name" id="name">
+                                <input class="form-control" type="text" value="{{ $data->name }}" name="name" id="name"
+                                    required>
                             </div>
                             <div class="form-group">
                                 <label for="email" class="form-control-label">Email</label>
-                                <input class="form-control" type="email" name="email" value="{{ old('email') }}"
-                                    id="email">
+                                <input class="form-control" type="email" name="email" value="{{ $data->email }}"
+                                    required id="email">
                             </div>
-                            <div class="form-group">
-                                <label for="password" class="form-control-label">Password</label>
-                                <input class="form-control" type="password" value="{{ old('password') }}"
-                                    name="password" id="password">
-                            </div>
+                            <select class="form-control" name="level" required>
+                                <option value="admin" {{ $data->level == 'admin' ? 'selected' : '' }}>Admin</option>
+                                <option value="superadmin" {{ $data->level == 'superadmin' ? 'selected' : '' }}>Superadmin
+                                </option>
+                            </select>
                             <div class="form-group">
                                 <label for="status" class="form-control-label">Status</label>
                                 <br>
                                 <label class="custom-toggle">
-                                    <input type="checkbox" checked name="status" id="status">
+                                    <input type="checkbox"
+                                        {{ $data->status == 1 || $data->status == 'true' ? 'checked' : '' }} name="status"
+                                        id="status">
                                     <span class="custom-toggle-slider rounded-circle" data-label-off="No"
                                         data-label-on="Yes"></span>
                                 </label>
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary my-4">Tambah</button>
+                                <button type="submit" class="btn btn-primary my-4">Ubah Data</button>
                             </div>
                         </form>
                     </div>

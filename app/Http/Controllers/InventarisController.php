@@ -18,7 +18,7 @@ class InventarisController extends Controller
     // Menampilkan tampilan awal menu inventaris
     public function index()
     {
-        $menu = Menu::where('name', 'Inventaris')->first();
+        $menu = Menu::where('name', 'Inventaris Perusahaan')->first();
         $id_menu = $menu->id;
         $folders = Folder::where('id_menu', $id_menu)->get();
         return view('inventaris.index', compact('id_menu', 'folders'));
