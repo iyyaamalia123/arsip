@@ -46,7 +46,7 @@ Route::group([ 'middleware' => 'auth'], function () {
      Route::delete('/proyek/destroy_folder/{id}', [App\Http\Controllers\ProyekController::class, 'destroy_folder'])->name('proyek.destroy_folder');
      // PROYEK - FILE
      Route::get('/proyek/{slug}', [App\Http\Controllers\ProyekController::class, 'detail_folder'])->name('proyek.detail_folder');
-     Route::post('/proyek/store_file/{id}', [App\Http\Controllers\Proyekontroller::class, 'store_file'])->name('proyek.store_file');
+     Route::post('/proyek/store_file/{id}', [App\Http\Controllers\ProyekController::class, 'store_file'])->name('proyek.store_file');
      Route::get('/proyek/show_file/{id}', [App\Http\Controllers\ProyekController::class, 'show_file'])->name('proyek.show_file');
      Route::post('/proyek/rename_file/{id}', [App\Http\Controllers\ProyekController::class, 'rename_file'])->name('proyek.rename_file');
      Route::delete('/proyek/destroy_file/{id}', [App\Http\Controllers\ProyekController::class, 'destroy_file'])->name('proyek.destroy_file');
@@ -91,21 +91,17 @@ Route::group([ 'middleware' => 'auth'], function () {
     Route::get('/admin',  [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
     Route::get('/admin/create',  [App\Http\Controllers\AdminController::class, 'create'])->name('admin.create');
     Route::post('/admin/store',  [App\Http\Controllers\AdminController::class, 'store'])->name('admin.store');
-    Route::get('/admin/edit',  [App\Http\Controllers\AdminController::class, 'edit'])->name('admin.edit');
-    Route::get('/admin/destroy',  [App\Http\Controllers\AdminController::class, 'edit'])->name('admin.edit');
-    Route::get('/karyawan',  [App\Http\Controllers\KaryawanController::class, 'index'])->name('karyawan');
+    Route::get('/admin/edit/{id}',  [App\Http\Controllers\AdminController::class, 'edit'])->name('admin.edit');
+    Route::post('/admin/update/{id}',  [App\Http\Controllers\AdminController::class, 'update'])->name('admin.update');
+    Route::get('/admin/destroy/{id}',  [App\Http\Controllers\AdminController::class, 'destroy'])->name('admin.destroy');
 
-    Route::get('/karyawan/create',  [App\Http\Controllers\KaryawanController::class, 'create'])->name('karyawan.create');
-    
     Route::get('/tender/create',  [App\Http\Controllers\KaryawanController::class, 'create'])->name('tender.create');
-
 
     // KARYAWAN
     Route::get('/karyawan',  [App\Http\Controllers\KaryawanController::class, 'index'])->name('karyawan');
     Route::get('/karyawan/create',  [App\Http\Controllers\KaryawanController::class, 'create'])->name('karyawan.create');
     Route::post('/karyawan/store',  [App\Http\Controllers\KaryawanController::class, 'store'])->name('karyawan.store');
     Route::get('/karyawan/edit',  [App\Http\Controllers\KaryawanController::class, 'edit'])->name('karyawan.edit');
-    Route::get('/karyawan',  [App\Http\Controllers\KaryawanController::class, 'index'])->name('karyawan');
 
     
 });
