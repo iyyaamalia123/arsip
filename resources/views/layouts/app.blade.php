@@ -11,7 +11,7 @@
     <title>Pengarsipan File</title>
 
     <!-- Scripts -->
-    <link rel="icon" href="{{ asset('assets/img/brand/favicon.png') }}" type="image/png">
+    <link rel="icon" href="{{ asset('assets/img/brand/mik.png') }}" type="image/png">
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
     <!-- Icons -->
@@ -34,7 +34,7 @@
             <!-- Brand -->
             <div class="sidenav-header  align-items-center">
                 <a class="navbar-brand" href="javascript:void(0)">
-                    <img src="../assets/img/brand/mik.png" class="navbar-brand-img" alt="...">
+                    <img src="{{ asset('assets/img/brand/mik.png') }}" class="navbar-brand-img" alt="Logo">
                 </a>
             </div>
             <div class="navbar-inner">
@@ -48,12 +48,14 @@
                                 <span class="nav-link-text">Dashboard</span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin') }}">
-                                <i class="fas fa-users text-danger"></i>
-                                <span class="nav-link-text">Admin</span>
-                            </a>
-                        </li>
+                        @if (Auth::user()->level == 'superadmin')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin') }}">
+                                    <i class="fas fa-users text-danger"></i>
+                                    <span class="nav-link-text">Data Admin</span>
+                                </a>
+                            </li>
+                        @endif
                         <li class="nav-item">
                             <a class="nav-link" href="/karyawan">
                                 <i class="ni ni-single-02 text-orange"></i>
@@ -78,12 +80,14 @@
                                 <span class="nav-link-text">Inventaris Perusahaan</span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/keuangan') }}">
-                                <i class="ni ni-money-coins"></i>
-                                <span class="nav-link-text">Keuangan</span>
-                            </a>
-                        </li>
+                        @if (Auth::user()->level == 'superadmin')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/keuangan') }}">
+                                    <i class="ni ni-money-coins"></i>
+                                    <span class="nav-link-text">Keuangan</span>
+                                </a>
+                            </li>
+                        @endif
 
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -131,10 +135,11 @@
                                 aria-expanded="false">
                                 <div class="media align-items-center">
                                     <span class="avatar avatar-sm rounded-circle">
-                                        <img alt="Image placeholder" src="../assets/img/theme/team-4.jpg">
+                                        <img alt="Image placeholder"
+                                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcZsL6PVn0SNiabAKz7js0QknS2ilJam19QQ&usqp=CAU">
                                     </span>
                                     <div class="media-body  ml-2  d-none d-lg-block">
-                                        <span class="mb-0 text-sm  font-weight-bold">John Snow</span>
+                                        <span class="mb-0 text-sm  font-weight-bold">{{ Auth::user()->name }}</span>
                                     </div>
                                 </div>
                             </a>
