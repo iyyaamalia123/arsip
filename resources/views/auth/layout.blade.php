@@ -8,7 +8,7 @@
     <meta name="author" content="Creative Tim">
     <title>PT MIK</title>
     <!-- Favicon -->
-    <link rel="icon" href="../assets/img/brand/favicon.png" type="image/png">
+    <link rel="icon" href="{{ asset('assets/img/brand/mik.png') }}" type="image/png">
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
     <!-- Icons -->
@@ -23,7 +23,7 @@
     <!-- Navbar -->
     <nav id="navbar-main" class="navbar navbar-horizontal navbar-transparent navbar-main navbar-expand-lg navbar-light">
         <div class="container">
-            <a class="navbar-brand" href="dashboard.html">
+            <a class="navbar-brand text-center" href="dashboard.html">
                 <img src="{{ asset('assets/img/brand/mik.png') }}">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse"
@@ -41,8 +41,8 @@
             <div class="row align-items-center justify-content-xl-between">
                 <div class="col-xl-6">
                     <div class="copyright text-center text-xl-left text-muted">
-                        &copy;<a href="{{ url('/') }}" class="font-weight-bold ml-1"
-                            target="_blank">Pengarsipan PT MATARAM INTI KONTRUKSI</a>
+                        &copy;<a href="{{ url('/') }}" class="font-weight-bold ml-1" target="_blank">Pengarsipan PT
+                            MATARAM INTI KONTRUKSI</a>
                     </div>
                 </div>
             </div>
