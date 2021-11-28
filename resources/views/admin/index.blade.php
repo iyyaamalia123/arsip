@@ -119,6 +119,71 @@
                 }
             })
         })
+
+        $('#search_input').keyup(function() {
+            let value = $(this).val()
+            if (value == '') {
+                value = 'allresult'
+            }
+            console.log(value);
+            $.ajax({
+                url: "/admin/searching?search=" + value,
+                success: function(data) {
+                    $('.list').empty();
+                    if (data == '') {
+                        $('.list').html('<td class="text-center">Tidak ada data</td>')
+                    } else {
+                        let result = ''
+                        let status = ''
+                        data.forEach(element => {
+                            if (element.status == true) {
+                                status = `<span class="badge badge-dot mr-4">
+                                            <i class="bg-success"></i>
+                                            <span class="status">Active</span>
+                                        </span>`
+                            } else {
+                                status = `<span class="badge badge-dot mr-4">
+                                            <i class="bg-danger"></i>
+                                            <span class="status">Not Active</span>
+                                        </span>`
+                            }
+
+                            result += `   <tr>
+                                            <td>
+                                               ${element.name}
+                                            </td>
+                                            <td>
+                                              ${element.email}
+                                            </td>
+                                            <td>
+                                               ${element.level}
+                                            </td>
+                                            <td>
+                                               ${status}
+                                            </td>
+                                            <td class="text-right">
+                                                <div class="dropdown">
+                                                    <a class="btn btn-sm btn-icon-only text-light" href="#"
+                                                        role="button" data-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </a>
+                                                    <div
+                                                        class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                        <a class="dropdown-item"
+                                                            href="/admin/edit/${element.id}">Edit</a>
+                                                        <a class="dropdown-item"
+                                                            href="/admin/destroy/${element.id}">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>`
+                        });
+                        $('.list').html(result)
+                    }
+                }
+            })
+        })
     </script>
 
 @endsection

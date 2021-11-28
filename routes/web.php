@@ -28,6 +28,8 @@ Route::group([ 'middleware' => 'auth'], function () {
     Route::get('/tender/show/{id}', [App\Http\Controllers\TenderController::class, 'show'])->name('tender.show');
     Route::post('/tender/rename_folder/{id}', [App\Http\Controllers\TenderController::class, 'rename_folder'])->name('tender.rename_folder');
     Route::delete('/tender/destroy_folder/{id}', [App\Http\Controllers\TenderController::class, 'destroy_folder'])->name('tender.destroy_folder');
+    // Searching
+    Route::get('/tender/searching', [App\Http\Controllers\TenderController::class, 'searching'])->name('tender.searching');
     // TENDER - FILE
     Route::get('/tender/{slug}', [App\Http\Controllers\TenderController::class, 'detail_folder'])->name('tender.detail_folder');
     Route::post('/tender/store_file/{id}', [App\Http\Controllers\TenderController::class, 'store_file'])->name('tender.store_file');
@@ -44,6 +46,8 @@ Route::group([ 'middleware' => 'auth'], function () {
      Route::get('/proyek/show/{id}', [App\Http\Controllers\ProyekController::class, 'show'])->name('proyek.show');
      Route::post('/proyek/rename_folder/{id}', [App\Http\Controllers\ProyekController::class, 'rename_folder'])->name('proyek.rename_folder');
      Route::delete('/proyek/destroy_folder/{id}', [App\Http\Controllers\ProyekController::class, 'destroy_folder'])->name('proyek.destroy_folder');
+       // Searching
+    Route::get('/proyek/searching', [App\Http\Controllers\ProyekController::class, 'searching'])->name('proyek.searching');
      // PROYEK - FILE
      Route::get('/proyek/{slug}', [App\Http\Controllers\ProyekController::class, 'detail_folder'])->name('proyek.detail_folder');
      Route::post('/proyek/store_file/{id}', [App\Http\Controllers\ProyekController::class, 'store_file'])->name('proyek.store_file');
@@ -57,12 +61,14 @@ Route::group([ 'middleware' => 'auth'], function () {
      // INVENTARIS - FOLDER    
     Route::get('/inventaris', [App\Http\Controllers\InventarisController::class, 'index'])->name('inventaris.index');
     Route::post('/inventaris/store_folder/{id}', [App\Http\Controllers\InventarisController::class, 'store_folder'])->name('inventaris.store_folder');
-    Route::get('/inventarisk/show/{id}', [App\Http\Controllers\InventarisController::class, 'show'])->name('inventaris.show');
+    Route::get('/inventaris/show/{id}', [App\Http\Controllers\InventarisController::class, 'show'])->name('inventaris.show');
     Route::post('/inventaris/rename_folder/{id}', [App\Http\Controllers\InventarisController::class, 'rename_folder'])->name('inventaris.rename_folder');
     Route::delete('/inventaris/destroy_folder/{id}', [App\Http\Controllers\InventarisController::class, 'destroy_folder'])->name('inventaris.destroy_folder');
+    // Searching
+    Route::get('/inventaris/searching', [App\Http\Controllers\InventarisController::class, 'searching'])->name('inventaris.searching');
     // INVENTARIS - FILE
     Route::get('/inventaris/{slug}', [App\Http\Controllers\InventarisController::class, 'detail_folder'])->name('inventaris.detail_folder');
-    Route::post('/inventaris/store_file/{id}', [App\Http\Controllers\Inventarisontroller::class, 'store_file'])->name('inventaris.store_file');
+    Route::post('/inventaris/store_file/{id}', [App\Http\Controllers\InventarisController::class, 'store_file'])->name('inventaris.store_file');
     Route::get('/inventaris/show_file/{id}', [App\Http\Controllers\InventarisController::class, 'show_file'])->name('inventaris.show_file');
     Route::post('/inventaris/rename_file/{id}', [App\Http\Controllers\InventarisController::class, 'rename_file'])->name('inventaris.rename_file');
     Route::delete('/inventaris/destroy_file/{id}', [App\Http\Controllers\InventarisController::class, 'destroy_file'])->name('inventaris.destroy_file');
@@ -76,6 +82,8 @@ Route::group([ 'middleware' => 'auth'], function () {
     Route::get('/keuangan/show/{id}', [App\Http\Controllers\KeuanganController::class, 'show'])->name('keuangan.show');
     Route::post('/keuangan/rename_folder/{id}', [App\Http\Controllers\KeuanganController::class, 'keuangan_folder'])->name('keuangan.rename_folder');
     Route::delete('/keuangan/destroy_folder/{id}', [App\Http\Controllers\KeuanganController::class, 'destroy_folder'])->name('keuangan.destroy_folder');
+      // Searching
+      Route::get('/keuangan/searching', [App\Http\Controllers\KeuanganController::class, 'searching'])->name('keuangan.searching');
     // KEUANGAN - FILE
     Route::get('/keuangan/{slug}', [App\Http\Controllers\KeuanganController::class, 'detail_folder'])->name('keuangan.detail_folder');
     Route::post('/keuangan/store_file/{id}', [App\Http\Controllers\KeuanganController::class, 'store_file'])->name('keuangan.store_file');
@@ -110,8 +118,8 @@ Route::group([ 'middleware' => 'auth'], function () {
     Route::get('/admin/edit/{id}',  [App\Http\Controllers\AdminController::class, 'edit'])->name('admin.edit');
     Route::post('/admin/update/{id}',  [App\Http\Controllers\AdminController::class, 'update'])->name('admin.update');
     Route::get('/admin/destroy/{id}',  [App\Http\Controllers\AdminController::class, 'destroy'])->name('admin.destroy');
-
-    Route::get('/tender/create',  [App\Http\Controllers\KaryawanController::class, 'create'])->name('tender.create');
+    // SEARCHING
+    Route::get('/admin/searching', [App\Http\Controllers\AdminController::class, 'searching'])->name('admin.searching');
 
     // KARYAWAN
     Route::get('/karyawan',  [App\Http\Controllers\KaryawanController::class, 'index'])->name('karyawan');
