@@ -31,7 +31,7 @@
                         <h3 class="mb-0">Proyek</h3>
                     </div>
                     <div class="card-body">
-                        <div class="row icon-examples">
+                        <div class="row icon-examples main-box">
                             @foreach ($folders as $folder)
                                 <div class="col-lg-3 col-md-6">
                                     <div class="action">
@@ -153,7 +153,7 @@
         });
 
         // Rename Javascript
-        $('.btn_rename').on('click', function(e) {
+        $(document).on('click', '.btn_rename', function(e) {
             var id = $(this).data('id');
             $.ajax({
                 url: "proyek/show/" + id,
@@ -165,7 +165,7 @@
         })
 
         // Delete
-        $('.btn_delete').on('click', function() {
+        $(document).on('click', '.btn_delete', function() {
             var id = $(this).data('id');
             Swal.fire({
                 title: 'Apakah Anda yakin menghapus folder ini?',
@@ -189,6 +189,56 @@
                         }
                     })
 
+                }
+            })
+        })
+
+
+        $('#search_input').keyup(function() {
+            let value = $(this).val()
+            if (value == '') {
+                value = 'allresult'
+            }
+            $.ajax({
+                url: "/proyek/searching?folder=" + value,
+                success: function(data) {
+                    $('.main-box').empty();
+
+                    if (data == '') {
+                        $('.main-box').html('<h4 class="text-center">Tidak ada data</h4>')
+                    } else {
+                        let result = ''
+                        data.forEach(element => {
+                            result += `<div class="col-lg-3 col-md-6">
+                                    <div class="action">
+                                        <div class="dropdown">
+                                            <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </a>
+                                            <div class="dropdown-menu  dropdown-menu-arrow">
+                                                <a href="#" class="btn_delete dropdown-item mr-1"
+                                                    data-id="${element.id}">
+                                                    Delete
+                                                </a>
+                                                <a href="#" class="btn_rename dropdown-item" data-id="${element.id}"
+                                                    data-toggle="modal" data-target="#modal-edit">
+                                                    Rename
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <a href="${element . url_folder}" class="btn-icon-clipboard">
+                                        <div class="">
+                                            <i class="ni ni-folder-17 text-warning"></i>
+                                            <span>${element.name}</span>
+                                        </div>
+                                    </a>
+                                </div>`
+                        });
+                        $('.main-box').html(result)
+                    }
                 }
             })
         })

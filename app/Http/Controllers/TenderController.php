@@ -88,6 +88,31 @@ class TenderController extends Controller
         $folder->delete();
     }
 
+    // Searching Folder
+    public function searching(Request $request)
+    {
+        $menu       = Menu::where('name', 'Tender')->first();
+        $id_menu    = $menu->id;
+        if ($request->folder) {
+            $datas    = Folder::where('id_menu', $id_menu);
+            if ($request->folder == 'allresult') {
+                $datas = $datas->get();
+            }else{
+                $datas = $datas->where('name', 'like', '%'.$request->folder.'%')->get();
+            }          
+        }else{
+            $folder = Folder::where('slug', $request->slug)->first();
+            $datas = File::where('id_folder', $folder->id)->orderBy('name_show', 'asc');
+            if ($request->file == 'allresult') {
+                $datas = $datas->get();
+            }else{
+                $datas = $datas->where('name_show', 'like', '%'.$request->file.'%')->get();
+            }    
+        }
+        return $datas;
+      
+    }
+
     // FILE
     // Menambah File
     public function store_file($id_folder, Request $request)
@@ -214,5 +239,6 @@ class TenderController extends Controller
         }
         return view('tender.detail', compact('folder', 'files', 'years', 'filter'));
     }
+
 
 }

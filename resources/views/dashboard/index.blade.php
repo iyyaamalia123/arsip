@@ -115,3 +115,8 @@
         </div>
     </div>
 @endsection
+@section('js')
+    <script>
+        $('#navbar-search-main').addClass('d-none')
+    </script>
+@endsection

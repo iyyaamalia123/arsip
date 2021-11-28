@@ -121,11 +121,12 @@
                         @if ($filter)
                             <div class="d-flex">
                                 <h4>Filter {{ $filter }}</h4>
-                                <a href="{{ url('/keuangan/' . $folder->slug) }}" class="btn btn-primary btn-sm ml-3">Reset
+                                <a href="{{ url('/keuangan/' . $folder->slug) }}"
+                                    class="btn btn-primary btn-sm ml-3">Reset
                                     Filter</a>
                             </div>
                         @endif
-                        <div class="row icon-examples">
+                        <div class="row icon-examples main-box">
                             @forelse ($files as $file)
                                 <div class="col-lg-3 col-md-6">
                                     <div class="action">
@@ -321,7 +322,7 @@
         });
 
         // Rename Javascript
-        $('.btn_rename').on('click', function(e) {
+        $(document).on('click', '.btn_rename', function(e) {
             var id = $(this).data('id');
             $.ajax({
                 url: "show_file/" + id,
@@ -334,7 +335,7 @@
         })
 
         // Delete
-        $('.btn_delete').on('click', function() {
+        $(document).on('click', '.btn_delete', function() {
             var id = $(this).data('id');
             Swal.fire({
                 title: 'Apakah Anda yakin menghapus file ini?',
@@ -358,6 +359,80 @@
                         }
                     })
 
+                }
+            })
+        })
+
+        $('#search_input').keyup(function() {
+            let value = $(this).val()
+            let slug = '{{ $folder->slug }}'
+            if (value == '') {
+                value = 'allresult'
+            }
+            $.ajax({
+                url: "/keuangan/searching?slug=" + slug + "&file=" + value,
+                success: function(data) {
+                    $('.main-box').empty();
+
+                    if (data == '') {
+                        $('.main-box').html('<h4 class="text-center">Tidak ada data</h4>')
+                    } else {
+                        console.log(data);
+                        let result = ''
+                        let icon = ''
+                        data.forEach(element => {
+                            if (element.file_type == 'doc' || element.file_type == 'docx') {
+                                icon = '<i class="fas fa-file-word"></i>'
+                            } else if (element.file_type == 'xls' || element.file_type ==
+                                'xlsx') {
+                                icon = '<i class="fas fa-file-excel text-success"></i>'
+                            } else if (element.file_type == 'pdf') {
+                                icon = '<i class="fas fa-file-pdf text-danger"></i>'
+                            } else if (element.file_type == 'jpg' || element.file_type ==
+                                'jepg' ||
+                                element.file_type == 'png') {
+                                icon = '<i class="fas fa-image text-orange"></i>'
+                            } else {
+                                icon = '<i class="fas fa-file text-info"></i>'
+                            }
+                            result += `<div class="col-lg-3 col-md-6">
+                                    <div class="action">
+                                        <div class="dropdown">
+                                            <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </a>
+                                            <div class="dropdown-menu  dropdown-menu-arrow">
+                                                <a href="#" class="btn_delete dropdown-item mr-1"
+                                                    data-id="${element.id}">
+                                                    Delete
+                                                </a>
+                                                <a href="#" class="btn_rename dropdown-item" data-id="${element.id}"
+                                                    data-toggle="modal" data-target="#modal-edit">
+                                                    Rename
+                                                </a>
+                                                <a href="/keuangan/download_file/${element.id}"
+                                                    class="btn_download dropdown-item" data-id="${element.id}">
+                                                    Download
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <button type="button" class="btn-icon-clipboard" data-toggle="tooltip"
+                                        data-placement="top" title="${element.name_show}">
+                                        <div>
+                                           ${icon}
+                                            <span>${element.name_show}</span>
+                                        </div>
+                                        <div style="color: #adacac; font-size:14px; margin-left:35px">
+                                            <small>${element.tahun}</small>
+                                        </div>
+                                    </button>
+                                </div>`
+                        });
+                        $('.main-box').html(result)
+                    }
                 }
             })
         })
