@@ -10,12 +10,13 @@
                         <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                                 <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Tender</li>
+                                <li class="breadcrumb-item active" aria-current="page">Lain-lain</li>
                             </ol>
                         </nav>
                     </div>
                     <div class="col-lg-6 col-5 text-right">
                         <a href="#" class="btn btn-sm btn-neutral" data-toggle="modal" data-target="#modal-form">New</a>
+                        <a href="#" class="btn btn-sm btn-neutral">Filters</a>
                     </div>
                 </div>
             </div>
@@ -27,7 +28,7 @@
             <div class=" col ">
                 <div class="card">
                     <div class="card-header bg-transparent">
-                        <h3 class="mb-0">Tender</h3>
+                        <h3 class="mb-0">Lain-lain</h3>
                     </div>
                     <div class="card-body">
                         <div class="row icon-examples">
@@ -77,7 +78,7 @@
                             <div class="text-center text-muted mb-4">
                                 <small>Add Folder</small>
                             </div>
-                            <form role="form" method="POST" action="{{ url('tender/store_folder/' . $id_menu) }}">
+                            <form role="form" method="POST" action="{{ url('lain/store_folder/' . $id_menu) }}">
                                 @csrf
                                 <div class="form-group mb-3">
                                     <div class="input-group input-group-merge input-group-alternative">
@@ -155,10 +156,10 @@
         $('.btn_rename').on('click', function(e) {
             var id = $(this).data('id');
             $.ajax({
-                url: "tender/show/" + id,
+                url: "lain/show/" + id,
                 success: function(data) {
                     $('#name_edit').val(data.name)
-                    $('#form_rename').attr('action', 'tender/rename_folder/' + id);
+                    $('#form_rename').attr('action', 'lain/rename_folder/' + id);
                 }
             })
         })
@@ -176,7 +177,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: "/tender/destroy_folder/" + id,
+                        url: "/lain/destroy_folder/" + id,
                         type: 'delete',
                         success: function(data) {
                             location.reload()

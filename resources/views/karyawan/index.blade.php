@@ -12,7 +12,7 @@
                             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                                 <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
                                 {{-- <li class="breadcrumb-item"><a href="#">Tender</a></li> --}}
-                                <li class="breadcrumb-item active" aria-current="page">Admin</li>
+                                <li class="breadcrumb-item active" aria-current="page">Data Karyawan</li>
                             </ol>
                         </nav>
                     </div>
@@ -38,6 +38,7 @@
                                     <table class="table align-items-center">
                                         <thead class="thead-light">
                                             <tr>
+                                                
                                                 <th scope="col" class="sort" data-sort="nama">Nama</th>
                                                 <th scope="col" class="sort" data-sort="nik">NIK</th>
                                                 <th scope="col" class="sort" data-sort="tempat_lahir">Tempat Lahir</th>
@@ -54,31 +55,31 @@
                                             @foreach ($karyawans as $karyawan)
                                                 <tr>
                                                     <td>
-                                                        {{ $karyawan->Nama }}
+                                                        {{ $karyawan->nama }}
                                                     </td>
                                                     <td>
-                                                        {{ $karyawan->NIK }}
+                                                        {{ $karyawan->nik }}
                                                     </td>
                                                     <td>
-                                                        {{ $karyawan->TempatLahir }}
+                                                        {{ $karyawan->tempat_lahir }}
                                                     </td>
                                                     <td>
-                                                        {{ $karyawan->TanggalLahir }}
+                                                        {{ $karyawan->date }}
                                                     </td>
                                                     <td>
-                                                        {{ $karyawan->Agama }}
+                                                        {{ $karyawan->agama }}
                                                     </td>
                                                     <td>
-                                                        {{ $karyawan->NoTelp }}
+                                                        {{ $karyawan->no_telp }}
                                                     </td>
                                                     <td>
-                                                        {{ $karyawan->NoDarurat }}
+                                                        {{ $karyawan->no_darurat }}
                                                     </td>
                                                     <td>
-                                                        {{ $karyawan->Gender }}
+                                                        {{ $karyawan->gender }}
                                                     </td>
                                                     <td>
-                                                        {{ $karyawan->Status }}
+                                                        {{ $karyawan->status }}
                                                     </td>
                                                     <td class="text-right">
                                                         <div class="dropdown">
@@ -89,8 +90,10 @@
                                                             </a>
                                                             <div
                                                                 class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                                <a class="dropdown-item" href="#">Edit</a>
-                                                                <a class="dropdown-item" href="#">Delete</a>
+                                                                <a class="dropdown-item"
+                                                                    href="{{ url('karyawan/edit/' . $karyawan->id) }}">Edit</a>
+                                                                <a class="dropdown-item"
+                                                                    href="{{ url('karyawan/destroy/' . $karyawan->id) }}">Delete</a>
                                                             </div>
                                                         </div>
                                                     </td>

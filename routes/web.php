@@ -37,7 +37,7 @@ Route::group([ 'middleware' => 'auth'], function () {
     Route::get('/tender/download_file/{id}', [App\Http\Controllers\TenderController::class, 'download_file'])->name('tender.download_file');
     Route::get('/tender/filter_file/{slug}', [App\Http\Controllers\TenderController::class, 'filter_file'])->name('tender.filter_file');
     Route::get('/tender/sort_file/{slug}', [App\Http\Controllers\TenderController::class, 'sort_file'])->name('tender.sort_file');
-
+    
      // PROYEK - FOLDER    
      Route::get('/proyek', [App\Http\Controllers\ProyekController::class, 'index'])->name('proyek.index');
      Route::post('/proyek/store_folder/{id}', [App\Http\Controllers\ProyekController::class, 'store_folder'])->name('proyek.store_folder');
@@ -86,6 +86,22 @@ Route::group([ 'middleware' => 'auth'], function () {
     Route::get('/keuangan/filter_file/{slug}', [App\Http\Controllers\KeuanganController::class, 'filter_file'])->name('keuangan.filter_file');
     Route::get('/keuangan/sort_file/{slug}', [App\Http\Controllers\KeuanganController::class, 'sort_file'])->name('keuangan.sort_file');
 
+ // LAIN-LAIN - FOLDER    
+ Route::get('/lain', [App\Http\Controllers\LainController::class, 'index'])->name('lain.index');
+ Route::post('/lain/store_folder/{id}', [App\Http\Controllers\LainController::class, 'store_folder'])->name('lain.store_folder');
+ Route::get('/lain/show/{id}', [App\Http\Controllers\LainController::class, 'show'])->name('lain.show');
+ Route::post('/lain/rename_folder/{id}', [App\Http\Controllers\LainController::class, 'lain_folder'])->name('lain.rename_folder');
+ Route::delete('/lain/destroy_folder/{id}', [App\Http\Controllers\LainController::class, 'destroy_folder'])->name('lain.destroy_folder');
+ // LAIN-LAIN - FILE
+ Route::get('/lain/{slug}', [App\Http\Controllers\LainController::class, 'detail_folder'])->name('lain.detail_folder');
+ Route::post('/lain/store_file/{id}', [App\Http\Controllers\LainController::class, 'store_file'])->name('lain.store_file');
+ Route::get('/lain/show_file/{id}', [App\Http\Controllers\LainController::class, 'show_file'])->name('lain.show_file');
+ Route::post('/lain/rename_file/{id}', [App\Http\Controllers\LainController::class, 'rename_file'])->name('lain.rename_file');
+ Route::delete('/lain/destroy_file/{id}', [App\Http\Controllers\LainController::class, 'destroy_file'])->name('lain.destroy_file');
+ Route::get('/lain/download_file/{id}', [App\Http\Controllers\LainController::class, 'download_file'])->name('lain.download_file');
+ Route::get('/lain/filter_file/{slug}', [App\Http\Controllers\LainController::class, 'filter_file'])->name('lain.filter_file');
+ Route::get('/lain/sort_file/{slug}', [App\Http\Controllers\LainController::class, 'sort_file'])->name('lain.sort_file');
+
 
     // ADMIN
     Route::get('/admin',  [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
@@ -101,7 +117,8 @@ Route::group([ 'middleware' => 'auth'], function () {
     Route::get('/karyawan',  [App\Http\Controllers\KaryawanController::class, 'index'])->name('karyawan');
     Route::get('/karyawan/create',  [App\Http\Controllers\KaryawanController::class, 'create'])->name('karyawan.create');
     Route::post('/karyawan/store',  [App\Http\Controllers\KaryawanController::class, 'store'])->name('karyawan.store');
-    Route::get('/karyawan/edit',  [App\Http\Controllers\KaryawanController::class, 'edit'])->name('karyawan.edit');
-
+    Route::get('/karyawan/edit/{id}',  [App\Http\Controllers\KaryawanController::class, 'edit'])->name('karyawan.edit');
+    Route::post('/karyawan/update/{id}',  [App\Http\Controllers\KaryawanController::class, 'update'])->name('karyawan.update');
+    Route::get('/karyawan/destroy/{id}',  [App\Http\Controllers\KaryawanController::class, 'destroy'])->name('karyawan.destroy');
     
 });

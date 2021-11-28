@@ -23,4 +23,6 @@ class UserSeeder extends Seeder
             'status'    => true
         ]);
     }
+
+    
 }

@@ -57,7 +57,7 @@
                             </li>
                         @endif
                         <li class="nav-item">
-                            <a class="nav-link" href="/karyawan">
+                            <a class="nav-link" href="{{ url('/karyawan') }}">
                                 <i class="ni ni-single-02 text-orange"></i>
                                 <span class="nav-link-text">Data Karyawan</span>
                             </a>
@@ -76,7 +76,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/inventaris') }}">
-                                <i class="ni ni-bullet-list-67 text-success"></i>
+                                <i class="ni ni-single-copy-04"></i>
                                 <span class="nav-link-text">Inventaris Perusahaan</span>
                             </a>
                         </li>
@@ -88,6 +88,12 @@
                                 </a>
                             </li>
                         @endif
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/lain') }}">
+                                <i class="ni ni-bullet-list-67 text-success"></i>
+                                <span class="nav-link-text">Lain-lain</span>
+                            </a>
+                        </li>
 
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();

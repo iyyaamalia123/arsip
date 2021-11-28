@@ -15,14 +15,16 @@ class CreateKaryawansTable extends Migration
     {
         Schema::create('karyawans', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_admin');
             $table->string('nama');
             $table->string('nik');
+            $table->string('tempat_lahir');
+            $table->string('tanggal_lahir');
             $table->string('alamat');
-            $table->string('telp');
-            $table->string('telp_darurat');
-            $table->set('jenis_kelamin', ['laki-laki', 'perempuan']);
-            $table->boolean('status', ['menikah','single']);
+            $table->string('agama');
+            $table->string('no_telp');
+            $table->string('no_darurat');
+            $table->set('gender', ['laki-laki', 'perempuan']);
+            $table->set('status', ['menikah','single']);
             $table->timestamps();
         });
     }
