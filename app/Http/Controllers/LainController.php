@@ -18,7 +18,7 @@ class LainController extends Controller
     // Menampilkan tampilan awal menu lain
     public function index()
     {
-        $menu = Menu::where('name', 'Lain')->first();
+        $menu = Menu::where('name', 'Lain-lain')->first();
         $id_menu = $menu->id;
         $folders = Folder::where('id_menu', $id_menu)->get();
         return view('lain.index', compact('id_menu', 'folders'));
@@ -86,6 +86,31 @@ class LainController extends Controller
     {
         $folder = Folder::find($id);
         $folder->delete();
+    }
+
+    // Searching Folder
+    public function searching(Request $request)
+    {
+        $menu       = Menu::where('name', 'Lain-lain')->first();
+        $id_menu    = $menu->id;
+        if ($request->folder) {
+            $datas    = Folder::where('id_menu', $id_menu);
+            if ($request->folder == 'allresult') {
+                $datas = $datas->get();
+            }else{
+                $datas = $datas->where('name', 'like', '%'.$request->folder.'%')->get();
+            }          
+        }else{
+            $folder = Folder::where('slug', $request->slug)->first();
+            $datas = File::where('id_folder', $folder->id)->orderBy('name_show', 'asc');
+            if ($request->file == 'allresult') {
+                $datas = $datas->get();
+            }else{
+                $datas = $datas->where('name_show', 'like', '%'.$request->file.'%')->get();
+            }    
+        }
+        return $datas;
+      
     }
 
     // FILE
@@ -214,5 +239,6 @@ class LainController extends Controller
         }
         return view('lain.detail', compact('folder', 'files', 'years', 'filter'));
     }
+
 
 }

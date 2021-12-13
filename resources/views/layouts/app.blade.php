@@ -83,11 +83,12 @@
                         @if (Auth::user()->level == 'superadmin')
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/keuangan') }}">
-                                    <i class="ni ni-money-coins"></i>
+                                    <i class="ni ni-money-coins text-purple"></i>
                                     <span class="nav-link-text">Keuangan</span>
                                 </a>
                             </li>
                         @endif
+                
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/lain') }}">
                                 <i class="ni ni-bullet-list-67 text-success"></i>

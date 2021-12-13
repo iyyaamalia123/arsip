@@ -80,7 +80,19 @@ class KaryawanController extends Controller
          } else {
             return redirect(route('karyawan'))->with('error', 'Gagal Menghapus Data Karyawan');;
          }
-         
-        
      }
+     //  Searching
+    public function searching(Request $request)
+    {
+        if ($request->search) {
+            if ($request->search =='allresult') {
+                $karyawans = Karyawan::all();
+            }else{
+                $karyawans = Karyawan::where('nama', 'like', '%'.$request->search.'%')->get();
+            }
+        }else{
+            $karyawans = Karyawan::all();
+        }
+        return $karyawans;
+    }
 }

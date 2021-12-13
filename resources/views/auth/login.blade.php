@@ -21,7 +21,7 @@
             </div>
         </div>
         <!-- Page content -->
-        <div class="container mt--8 pb-5">
+        <div class="container mt--6 pb-5">
             <div class="row justify-content-center">
                 <div class="col-lg-5 col-md-7">
                     <div class="card bg-secondary border-0 mb-0">
@@ -74,13 +74,6 @@
                             </form>
                         </div>
                     </div>
-                    <div class="row mt-3">
-                        <div class="col-6">
-                            @if (Route::has('password.request'))
-                                <a href="{{ route('password.request') }}" class="text-light"><small>Forgot
-                                        password?</small></a>
-                            @endif
-                        </div>
                         {{-- <div class="col-6 text-right">
                             <a href="#" class="text-light"><small>Create new account</small></a>
                         </div> --}}

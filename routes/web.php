@@ -100,6 +100,8 @@ Route::group([ 'middleware' => 'auth'], function () {
  Route::get('/lain/show/{id}', [App\Http\Controllers\LainController::class, 'show'])->name('lain.show');
  Route::post('/lain/rename_folder/{id}', [App\Http\Controllers\LainController::class, 'lain_folder'])->name('lain.rename_folder');
  Route::delete('/lain/destroy_folder/{id}', [App\Http\Controllers\LainController::class, 'destroy_folder'])->name('lain.destroy_folder');
+ // Searching
+ Route::get('/lain/searching', [App\Http\Controllers\LainController::class, 'searching'])->name('lain.searching');
  // LAIN-LAIN - FILE
  Route::get('/lain/{slug}', [App\Http\Controllers\LainController::class, 'detail_folder'])->name('lain.detail_folder');
  Route::post('/lain/store_file/{id}', [App\Http\Controllers\LainController::class, 'store_file'])->name('lain.store_file');
@@ -128,5 +130,7 @@ Route::group([ 'middleware' => 'auth'], function () {
     Route::get('/karyawan/edit/{id}',  [App\Http\Controllers\KaryawanController::class, 'edit'])->name('karyawan.edit');
     Route::post('/karyawan/update/{id}',  [App\Http\Controllers\KaryawanController::class, 'update'])->name('karyawan.update');
     Route::get('/karyawan/destroy/{id}',  [App\Http\Controllers\KaryawanController::class, 'destroy'])->name('karyawan.destroy');
-    
+    // SEARCHING
+    Route::get('/karyawan/searching', [App\Http\Controllers\KaryawanController::class, 'searching'])->name('karyawan.searching');
+
 });

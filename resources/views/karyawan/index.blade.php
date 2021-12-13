@@ -44,6 +44,7 @@
                                                 <th scope="col" class="sort" data-sort="tempat_lahir">Tempat Lahir</th>
                                                 <th scope="col" class="sort" data-sort="tanggal_Lahir">Tanggal Lahir</th>
                                                 <th scope="col" class="sort" data-sort="alamat">Alamat</th>
+                                                <th scope="col" class="sort" data-sort="alamat">Agama</th>
                                                 <th scope="col" class="sort" data-sort="no_telp">Nomor Telephone</th>
                                                 <th scope="col" class="sort" data-sort="no_darurat">Nomor Darurat</th>
                                                 <th scope="col" class="sort" data-sort="gender">Gender</th>
@@ -64,7 +65,10 @@
                                                         {{ $karyawan->tempat_lahir }}
                                                     </td>
                                                     <td>
-                                                        {{ $karyawan->date }}
+                                                        {{ $karyawan->tanggal_lahir }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $karyawan->alamat }}
                                                     </td>
                                                     <td>
                                                         {{ $karyawan->agama }}
@@ -110,4 +114,100 @@
             </div>
         </div>
     </div>
+    
+@endsection
+@section('js')
+<script>
+    $('.delete_data').click(function() {
+        var id = $(this).data("id");
+        var token = $("meta[name='csrf-token']").attr("content");
+
+        $.ajax({
+            url: "/karyawan/destroy/" + id,
+            type: 'DELETE',
+            data: {
+                "id": id,
+                "_token": token,
+            },
+            success: function() {
+                alert("Sukses");
+                window.location.reload();
+            }
+        })
+    })
+
+    $('#search_input').keyup(function() {
+        let value = $(this).val()
+        if (value == '') {
+            value = 'allresult'
+        }
+        console.log(value);
+        $.ajax({
+                url: "/karyawan/searching?search=" + value,
+                success: function(data) {
+                    $('.list').empty();
+                    if (data == '') {
+                        $('.list').html('<td class="text-center">Tidak ada data</td>')
+                    } else {
+                        let result = ''
+                        let status = ''
+                        data.forEach(element => {
+
+
+                        result += `<tr>
+                                        <td>
+                                           ${element.nama}
+                                        </td>
+                                        <td>
+                                          ${element.nik}
+                                        </td>
+                                        <td>
+                                           ${element.tempat_lahir}
+                                        </td>
+                                        <td>
+                                           ${element.tanggal_lahir}
+                                        </td>
+                                        <td>
+                                           ${element.alamat}
+                                        </td>
+                                        <td>
+                                           ${element.agama}
+                                        </td>
+                                        <td>
+                                           ${element.no_telp}
+                                        </td>
+                                        <td>
+                                           ${element.no_darurat}
+                                        </td>
+                                        <td>
+                                           ${element.gender}
+                                        </td>
+                                        <td>
+                                           ${element.status}
+                                        </td>
+                                        <td class="text-right">
+                                            <div class="dropdown">
+                                                <a class="btn btn-sm btn-icon-only text-light" href="#"
+                                                    role="button" data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </a>
+                                                <div
+                                                    class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                    <a class="dropdown-item"
+                                                        href="/karyawan/edit/${element.id}">Edit</a>
+                                                    <a class="dropdown-item"
+                                                        href="/karyawan/destroy/${element.id}">Delete</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>`
+                    });
+                    $('.list').html(result)
+                }
+            }
+        })
+    })
+</script>
+
 @endsection

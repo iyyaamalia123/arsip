@@ -18,7 +18,7 @@ class CreateKaryawansTable extends Migration
             $table->string('nama');
             $table->string('nik');
             $table->string('tempat_lahir');
-            $table->string('tanggal_lahir');
+            $table->date('tanggal_lahir');
             $table->string('alamat');
             $table->string('agama');
             $table->string('no_telp');

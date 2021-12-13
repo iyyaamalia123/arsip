@@ -27,6 +27,8 @@ class MenuSeeder extends Seeder
             'url'     => '/inventaris'],
            [ 'name'      => 'Keuangan',
             'url'     => '/keuangan'],
+            [ 'name'      => 'Lain-lain',
+            'url'     => '/lain'],
         ]);
     }
 }

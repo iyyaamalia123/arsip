@@ -71,7 +71,6 @@
                                 <input class="form-control" type="number" value="{{ old('no_darurat') }}"
                                     name="no_darurat" id="no darurat">
                             </div>
-                            </div>
                             <div class="form-group">
                             <label for="gender" class="form-control-label">Gender</label>
                             <select class="form-control" name="gender" required>
@@ -97,4 +96,10 @@
             </div>
         </div>
     </div>              
+@endsection
+
+@section('js')
+    <script>
+        $('#navbar-search-main').addClass('d-none')
+    </script>
 @endsection

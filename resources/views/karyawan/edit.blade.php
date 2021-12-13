@@ -28,11 +28,12 @@
                         <h3 class="mb-0">Edit</h3>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('karyawan.update') }}" method="POST">
+                        <form action="{{ url('karyawan/update/' . $data->id) }}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label for="name" class="form-control-label">Nama Lengkap</label>
-                                <input class="form-control" type="text" value="{{ $data->name }}" name="name" id="name">
+                                <input class="form-control" type="text" value="{{ $data->nama }}" name="name" id="name"
+                                    required>
                             </div>
                             <div class="form-group">
                                 <label for="nik" class="form-control-label">NIK</label>
@@ -44,7 +45,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="date" class="form-control-label">Tanggal Lahir</label>
-                                <input class="form-control" type="date" value="{{ $data->date }}" name="date" id="date">
+                                <input class="form-control" type="date" value="{{ $data->tanggal_lahir }}" name="date" id="date">
                             </div>
                             <div class="form-group">
                                 <label for="alamat" class="form-control-label">Alamat</label>
@@ -62,13 +63,13 @@
                                 <label for="password" class="form-control-label">Nomor Darurat</label>
                                 <input class="form-control" type="number" value="{{ $data->no_darurat }}" name="no_darurat" id="no darurat">
                             </div>
-                            </div>
                             <div class="form-group">
-                            <label for="gender" class="form-control-label">Gender</label>
-                            <option value="perempuan" {{ $data->gender == 'perempuan' ? 'selected' : '' }}>Perempuan</option>
-                                <option value="laki-laki" {{ $data->gender == 'kali-laki' ? 'selected' : '' }}>Laki-laki
-                                </option>
-                            </div>
+                                <label for="gender" class="form-control-label">Gender</label>
+                                <select class="form-control" name="gender" required>
+                                    <option value="perempuan">Perempuan</option>
+                                    <option value="laki-laki">Laki-laki</option>
+                                </select>
+                                </div>
                             <br>
                             <div class="form-group">
                                 <label for="status" class="form-control-label">Status</label>
@@ -87,4 +88,9 @@
             </div>
         </div>
     </div>
+@endsection
+@section('js')
+    <script>
+        $('#navbar-search-main').addClass('d-none')
+    </script>
 @endsection
