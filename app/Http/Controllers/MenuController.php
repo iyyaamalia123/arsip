@@ -29,7 +29,7 @@ class MenuController extends Controller
         if ($cek_menu->isEmpty()) {
             $menu             = New Menu();
             $menu->name       = $request->name;
-            $menu->url = '/'. Str::slug($request->name);
+            $menu->url = '/menu/'. Str::slug($request->name);
             $menu->save();
 
             return redirect()->back()->with('success', 'Berhasil Membuat Menu');

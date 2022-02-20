@@ -99,7 +99,7 @@
                         </li>
                         <li class="nav-item m-auto">
                             <a class="text-center rounded m-auto btn btn-secondary btn-sm" data-toggle="modal"
-                                data-target="#modal-form">
+                                data-target="#add_menu_modal">
                                 <i class="ni ni-fat-add text-dark"></i>
                                 <span class="nav-link-text">Add Menu</span>
                             </a>
@@ -168,7 +168,7 @@
     </div>
 
     {{-- Modal Tambah --}}
-    <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form"
+    <div class="modal fade" id="add_menu_modal" tabindex="-1" role="dialog" aria-labelledby="add_menu_modal"
         aria-hidden="true">
         <div class="modal-dialog modal- modal-dialog-centered modal-sm" role="document">
             <div class="modal-content">
