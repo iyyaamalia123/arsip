@@ -48,53 +48,43 @@
                                 <span class="nav-link-text">Dashboard</span>
                             </a>
                         </li>
-                        @if (Auth::user()->level == 'superadmin')
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admin') }}">
-                                    <i class="fas fa-users text-danger"></i>
-                                    <span class="nav-link-text">Data Admin</span>
-                                </a>
-                            </li>
-                        @endif
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/karyawan') }}">
-                                <i class="ni ni-single-02 text-orange"></i>
-                                <span class="nav-link-text">Data Karyawan</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/tender') }}">
-                                <i class="ni ni-collection text-primary"></i>
-                                <span class="nav-link-text">Tender</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/proyek') }}">
-                                <i class="ni ni-building text-yellow"></i>
-                                <span class="nav-link-text">Proyek</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/inventaris') }}">
-                                <i class="ni ni-single-copy-04"></i>
-                                <span class="nav-link-text">Inventaris Perusahaan</span>
-                            </a>
-                        </li>
-                        @if (Auth::user()->level == 'superadmin')
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/keuangan') }}">
-                                    <i class="ni ni-money-coins text-purple"></i>
-                                    <span class="nav-link-text">Keuangan</span>
-                                </a>
-                            </li>
-                        @endif
-                
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/lain') }}">
-                                <i class="ni ni-bullet-list-67 text-success"></i>
-                                <span class="nav-link-text">Lain-lain</span>
-                            </a>
-                        </li>
+                        @foreach ($menus as $menu)
+                            @if ($menu->name == 'Admin' || $menu->name == 'Keuangan')
+                                @if (Auth::user()->level == 'superadmin')
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ url($menu->url) }}">
+                                            @if ($menu->name == 'Admin')
+                                                <i class="fas fa-users text-danger"></i>
+                                            @else
+                                                <i class="ni ni-money-coins text-purple"></i>
+                                            @endif
+                                            <span class="nav-link-text">{{ $menu->name }}</span>
+                                        </a>
+                                    </li>
+                                @endif
+                            @else
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url($menu->url) }}">
+                                        @if ($menu->name == 'Data Karyawan')
+                                            <i class="ni ni-single-02 text-orange"></i>
+                                        @elseif($menu->name == 'Tender')
+                                            <i class="ni ni-collection text-primary"></i>
+                                        @elseif($menu->name == 'Proyek')
+                                            <i class="ni ni-building text-yellow"></i>
+                                        @elseif($menu->name == 'Inventaris Perusahaan')
+                                            <i class="ni ni-single-copy-04"></i>
+                                        @elseif($menu->name == 'Lain-lain')
+                                            <i class="ni ni-bullet-list-67 text-success"></i>
+                                        @else
+                                            <i class="ni ni-app text-info"></i>
+                                        @endif
+                                        <span class="nav-link-text">{{ $menu->name }}</span>
+                                    </a>
+                                </li>
+                            @endif
+
+                        @endforeach
+
 
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -106,6 +96,13 @@
                                 class="d-none">
                                 @csrf
                             </form>
+                        </li>
+                        <li class="nav-item m-auto">
+                            <a class="text-center rounded m-auto btn btn-secondary btn-sm" data-toggle="modal"
+                                data-target="#modal-form">
+                                <i class="ni ni-fat-add text-dark"></i>
+                                <span class="nav-link-text">Add Menu</span>
+                            </a>
                         </li>
                     </ul>
 
@@ -168,6 +165,39 @@
         </nav>
         @yield('content')
 
+    </div>
+
+    {{-- Modal Tambah --}}
+    <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form"
+        aria-hidden="true">
+        <div class="modal-dialog modal- modal-dialog-centered modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <div class="card bg-secondary border-0 mb-0">
+                        <div class="card-body px-lg-5 py-lg-5">
+                            <div class="text-center text-muted mb-4">
+                                <small>Add Menu</small>
+                            </div>
+                            <form role="form" method="POST" action="{{ route('menu.store') }}">
+                                @csrf
+                                <div class="form-group mb-3">
+                                    <div class="input-group input-group-merge input-group-alternative">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-app"></i></span>
+                                        </div>
+                                        <input class="form-control" placeholder="Menu Name" type="text" id="name"
+                                            name="name">
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary my-4">Create</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 

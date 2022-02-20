@@ -130,7 +130,29 @@ Route::group([ 'middleware' => 'auth'], function () {
     Route::get('/karyawan/edit/{id}',  [App\Http\Controllers\KaryawanController::class, 'edit'])->name('karyawan.edit');
     Route::post('/karyawan/update/{id}',  [App\Http\Controllers\KaryawanController::class, 'update'])->name('karyawan.update');
     Route::get('/karyawan/destroy/{id}',  [App\Http\Controllers\KaryawanController::class, 'destroy'])->name('karyawan.destroy');
-    // SEARCHING
-    Route::get('/karyawan/searching', [App\Http\Controllers\KaryawanController::class, 'searching'])->name('karyawan.searching');
+
+      // SEARCHING
+      Route::get('/karyawan/searching', [App\Http\Controllers\KaryawanController::class, 'searching'])->name('karyawan.searching');
+    
+    Route::post('/menu/store',  [App\Http\Controllers\MenuController::class, 'store'])->name('menu.store');
+    
+    Route::get('/menu/{menu}',  [App\Http\Controllers\MenuController::class, 'index'])->name('menu.index');
+    Route::post('/menu/store_folder/{id}', [App\Http\Controllers\MenuController::class, 'store_folder'])->name('menu.store_folder');
+    Route::get('/menu/show/{id}', [App\Http\Controllers\MenuController::class, 'show'])->name('menu.show');
+    Route::post('/menu/rename_folder/{id}', [App\Http\Controllers\MenuController::class, 'rename_folder'])->name('menu.rename_folder');
+    Route::delete('/menu/destroy_folder/{id}', [App\Http\Controllers\MenuController::class, 'destroy_folder'])->name('menu.destroy_folder');
+      // Searching
+      Route::get('/menu/{menu}/searching', [App\Http\Controllers\MenuController::class, 'searching'])->name('menu.searching');
+      // Menu - FILE
+      Route::get('/menu/{menu}/{slug}', [App\Http\Controllers\MenuController::class, 'detail_folder'])->name('menu.detail_folder');
+      Route::post('/menu/store_file/{id}', [App\Http\Controllers\MenuController::class, 'store_file'])->name('menu.store_file');
+      Route::get('/menu/show_file/{id}', [App\Http\Controllers\MenuController::class, 'show_file'])->name('menu.show_file');
+      Route::post('/menu/rename_file/{id}', [App\Http\Controllers\MenuController::class, 'rename_file'])->name('menu.rename_file');
+      Route::delete('/menu/destroy_file/{id}', [App\Http\Controllers\MenuController::class, 'destroy_file'])->name('menu.destroy_file');
+      Route::get('/menu/download_file/{id}', [App\Http\Controllers\MenuController::class, 'download_file'])->name('menu.download_file');
+      Route::get('/menu/filter_file/{slug}', [App\Http\Controllers\MenuController::class, 'filter_file'])->name('menu.filter_file');
+      Route::get('/menu/sort_file/{slug}', [App\Http\Controllers\MenuController::class, 'sort_file'])->name('menu.sort_file');
+
+  
 
 });
