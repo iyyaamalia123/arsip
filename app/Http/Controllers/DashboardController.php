@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\File;
 use App\Models\Folder;
 use App\Models\Menu;
 use Illuminate\Http\Request;
@@ -38,6 +39,19 @@ class DashboardController extends Controller
 
         return view('dashboard.index', compact('tender',  'proyek', 'inventaris', 'keuangan', 'lain'));
     }
+
+     // Searching Folder
+     public function searching( Request $request)
+     {
+    //    $menu = Menu::where('name', $menu_name)->first(); 
+        //  $id_menu    = $menu->id;
+         if ($request->folder) {
+                 $datas = Folder::where('name', 'like', '%'.$request->folder.'%')->get();      
+         }else{
+             $datas = File::orderBy('name_show', 'asc');
+                 $datas = $datas->where('name_show', 'like', '%'.$request->file.'%')->get();
+         }
+         return $datas;
+       
+     }
 }
-
-

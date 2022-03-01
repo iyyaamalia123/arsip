@@ -21,6 +21,7 @@ Auth::routes();
 Route::group([ 'middleware' => 'auth'], function () {
 
     Route::get('/', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard/searching', [App\Http\Controllers\DashboardController::class, 'searching'])->name('dashboard.searching');
 
     // TENDER - FOLDER    
     Route::get('/tender', [App\Http\Controllers\TenderController::class, 'index'])->name('tender.index');
